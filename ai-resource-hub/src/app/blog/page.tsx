@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import SpotlightCard from "@/components/SpotlightCard";
 import styles from "./page.module.css";
 
 const ARTICLES = [
@@ -39,25 +42,32 @@ export default function BlogList() {
 
                 <div className={styles.list}>
                     {ARTICLES.map((article, index) => (
-                        <Link
-                            href={`/blog/${article.id}`}
-                            key={article.id}
-                            className={`${styles.articleCard} animate-fade-up`}
-                            style={{ animationDelay: `${(index + 1) * 0.1}s` }}
-                        >
-                            <div className={styles.meta}>
-                                <span className={styles.tag}>{article.tag}</span>
-                                <span>•</span>
-                                <span>{article.date}</span>
-                                <span>•</span>
-                                <span>5 min read</span>
-                            </div>
-                            <h2 className={styles.articleTitle}>{article.title}</h2>
-                            <p className={styles.excerpt}>{article.excerpt}</p>
-                            <div className={styles.readMore}>
-                                Read Article <ArrowRight size={16} />
-                            </div>
-                        </Link>
+                        <div key={article.id} style={{ animationDelay: `${(index + 1) * 0.1}s` }} className="animate-fade-up">
+                            <SpotlightCard>
+                                <Link
+                                    href={`/blog/${article.id}`}
+                                    style={{
+                                        display: "flex",
+                                        flexDirection: "column",
+                                        padding: "2rem",
+                                        cursor: "pointer"
+                                    }}
+                                >
+                                    <div className={styles.meta}>
+                                        <span className={styles.tag}>{article.tag}</span>
+                                        <span>•</span>
+                                        <span>{article.date}</span>
+                                        <span>•</span>
+                                        <span>5 min read</span>
+                                    </div>
+                                    <h2 className={styles.articleTitle}>{article.title}</h2>
+                                    <p className={styles.excerpt}>{article.excerpt}</p>
+                                    <div className={styles.readMore}>
+                                        Read Article <ArrowRight size={16} style={{ marginLeft: "4px" }} />
+                                    </div>
+                                </Link>
+                            </SpotlightCard>
+                        </div>
                     ))}
                 </div>
             </div>

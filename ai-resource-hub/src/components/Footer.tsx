@@ -1,10 +1,21 @@
+"use client";
+
 import Link from "next/link";
 import { Github, Twitter, Linkedin } from "lucide-react";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
+    const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+        const target = e.currentTarget;
+        const rect = target.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        target.style.setProperty("--mouse-x", `${x}px`);
+        target.style.setProperty("--mouse-y", `${y}px`);
+    };
+
     return (
-        <footer className={styles.footer}>
+        <footer className={styles.footer} onMouseMove={handleMouseMove}>
             <div className={styles.container}>
                 <div className={styles.content}>
                     <div className={styles.left}>

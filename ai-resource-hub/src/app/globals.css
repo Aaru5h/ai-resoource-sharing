@@ -12,10 +12,12 @@
   --primary-foreground: #ffffff;
 
   --border: #222222;
-  --border-hover: #333333;
+  --border-hover: #444444;
+  --card-glow: rgba(0, 112, 243, 0.15);
 
   --transition-fast: 0.15s ease;
-  --transition-normal: 0.3s ease;
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -47,6 +49,35 @@ a {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.layout-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 500px;
+  background: radial-gradient(circle at 50% -20%, rgba(0, 112, 243, 0.15), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.layout-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 500px;
+  background: radial-gradient(circle at 50% -20%, rgba(0, 112, 243, 0.15), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .main-content {

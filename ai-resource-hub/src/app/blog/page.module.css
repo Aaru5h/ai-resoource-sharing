@@ -36,19 +36,42 @@
 }
 
 .articleCard {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding: 2rem;
-    background-color: var(--background);
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: 12px;
     transition: var(--transition-normal);
     opacity: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.articleCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, -20%), var(--card-glow), transparent 40%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .articleCard:hover {
-    border-color: var(--muted-foreground);
+    border-color: #444;
     transform: translateX(4px);
+    box-shadow: 0 10px 40px -10px rgba(0, 112, 243, 0.15);
+}
+
+.articleCard:hover::before {
+    opacity: 1;
 }
 
 .meta {

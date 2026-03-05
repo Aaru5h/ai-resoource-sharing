@@ -1,0 +1,28 @@
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
+    transition: var(--transition-normal);
+    z-index: 1;
+    height: 100%;
+}
+
+.card:hover {
+    border-color: #444;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px -10px rgba(0, 112, 243, 0.15);
+}
+
+.spotlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-normal);
+    z-index: 0;
+}

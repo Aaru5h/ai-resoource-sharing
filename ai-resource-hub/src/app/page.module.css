@@ -33,14 +33,12 @@
 
 .title {
     font-size: 4rem;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1.1;
     letter-spacing: -0.04em;
     margin-bottom: 1.5rem;
-    background: linear-gradient(180deg, var(--foreground) 0%, var(--muted-foreground) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--foreground);
+    text-shadow: 0 4px 24px rgba(255, 255, 255, 0.1);
 }
 
 .subtitle {
@@ -139,21 +137,43 @@
 }
 
 .card {
+    position: relative;
     display: flex;
     flex-direction: column;
-    background-color: var(--background);
+    background-color: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 1.5rem;
     transition: var(--transition-normal);
     cursor: pointer;
     height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, -20%), var(--card-glow), transparent 40%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .card:hover {
-    border-color: var(--muted-foreground);
+    border-color: #444;
     transform: translateY(-4px);
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px -10px rgba(0, 112, 243, 0.15);
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 .cardHeader {

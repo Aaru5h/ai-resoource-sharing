@@ -1,5 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Terminal } from "lucide-react";
+import BlurText from "@/components/BlurText";
+import SpotlightCard from "@/components/SpotlightCard";
 import styles from "./page.module.css";
 
 const FEATURED_RESOURCES = [
@@ -32,9 +36,11 @@ export default function Home() {
           <Terminal size={16} />
           <span>Latest: v1.0.4 Released</span>
         </div>
-        <h1 className={styles.title}>
-          Master AI Engineering & Machine Learning
-        </h1>
+        <BlurText
+          text="Master AI Engineering & Machine Learning"
+          delay={50}
+          className={styles.title}
+        />
         <p className={styles.subtitle}>
           A curated space for high-quality tutorials, open-source projects, and
           in-depth theoretical breakdowns. Designed for practitioners.
@@ -60,16 +66,27 @@ export default function Home() {
 
         <div className={styles.grid}>
           {FEATURED_RESOURCES.map((resource) => (
-            <Link href={`/blog/${resource.id}`} key={resource.id} className={styles.card}>
-              <div className={styles.cardHeader}>
-                <span className={styles.cardType}>{resource.type}</span>
-                <span className={styles.cardDate}>{resource.date}</span>
-              </div>
-              <h3 className={styles.cardTitle}>{resource.title}</h3>
-              <div className={styles.cardFooter}>
-                Read More <ArrowRight size={16} style={{ marginLeft: "4px" }} />
-              </div>
-            </Link>
+            <SpotlightCard key={resource.id}>
+              <Link
+                href={`/blog/${resource.id}`}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: "1.5rem",
+                  cursor: "pointer",
+                  height: "100%"
+                }}
+              >
+                <div className={styles.cardHeader}>
+                  <span className={styles.cardType}>{resource.type}</span>
+                  <span className={styles.cardDate}>{resource.date}</span>
+                </div>
+                <h3 className={styles.cardTitle}>{resource.title}</h3>
+                <div className={styles.cardFooter}>
+                  Read More <ArrowRight size={16} style={{ marginLeft: "4px" }} />
+                </div>
+              </Link>
+            </SpotlightCard>
           ))}
         </div>
       </section>
