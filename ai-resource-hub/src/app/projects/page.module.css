@@ -1,0 +1,120 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 4rem 2rem;
+}
+
+.content {
+    width: 100%;
+    max-width: 1000px;
+}
+
+.header {
+    margin-bottom: 4rem;
+    opacity: 0;
+    text-align: center;
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.subtitle {
+    color: var(--muted-foreground);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.projectCard {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: var(--transition-normal);
+    opacity: 0;
+    height: 100%;
+}
+
+.projectCard:hover {
+    border-color: var(--muted-foreground);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.folderIcon {
+    color: var(--foreground);
+}
+
+.externalLink {
+    color: var(--muted-foreground);
+    transition: var(--transition-fast);
+}
+
+.externalLink:hover {
+    color: var(--primary);
+}
+
+.projectTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--foreground);
+}
+
+.projectDesc {
+    color: var(--muted-foreground);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.techStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech {
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+    font-family: var(--font-geist-mono);
+    background-color: var(--accent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+.cardFooter {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--muted-foreground);
+    font-size: 0.85rem;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
