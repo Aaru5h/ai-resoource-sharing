@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 
-type AnimationType = "fadeUp" | "fadeLeft" | "fadeRight" | "scaleIn" | "fadeDown";
+type AnimationType = "fadeUp" | "fadeLeft" | "fadeRight" | "scaleIn" | "fadeDown" | "flipUp" | "flipDown" | "zoom3D";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -37,6 +37,18 @@ const animations: Record<AnimationType, { hidden: any; visible: any }> = {
   scaleIn: {
     hidden: { opacity: 0, scale: 0.92 },
     visible: { opacity: 1, scale: 1 },
+  },
+  flipUp: {
+    hidden: { opacity: 0, rotateX: -60, y: 50, z: -100 },
+    visible: { opacity: 1, rotateX: 0, y: 0, z: 0 },
+  },
+  flipDown: {
+    hidden: { opacity: 0, rotateX: 60, y: -50, z: -100 },
+    visible: { opacity: 1, rotateX: 0, y: 0, z: 0 },
+  },
+  zoom3D: {
+    hidden: { opacity: 0, scale: 0.8, rotateY: 30, z: -200 },
+    visible: { opacity: 1, scale: 1, rotateY: 0, z: 0 },
   },
 };
 

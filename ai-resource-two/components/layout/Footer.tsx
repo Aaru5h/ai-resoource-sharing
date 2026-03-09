@@ -1,33 +1,28 @@
 "use client";
 
 import Link from 'next/link';
-import { Github } from 'lucide-react';
 
 export default function Footer() {
     return (
         <footer style={{
-            borderTop: '1px solid rgba(255,255,255,0.04)',
-            marginTop: '4rem',
+            borderTop: '1px solid var(--border)',
         }}>
             <div style={{
-                maxWidth: 1200, margin: '0 auto', padding: '3rem 2rem',
+                maxWidth: 900, margin: '0 auto', padding: '2.5rem 2rem',
                 display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                 flexWrap: 'wrap', gap: '1rem',
             }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span style={{
-                        width: 22, height: 22, borderRadius: 5,
-                        background: 'linear-gradient(135deg, #0070f3, #0050c8)',
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        color: '#fff', fontFamily: 'var(--font-geist-mono)',
-                        fontSize: '0.48rem', fontWeight: 900,
-                    }}>AI</span>
-                    <span style={{ fontSize: '0.82rem', color: 'var(--muted-foreground)' }}>
+                <div>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--muted-foreground)' }}>
                         © {new Date().getFullYear()} AI Resource Hub
+                    </span>
+                    <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.2)', margin: '0 0.5rem' }}>·</span>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--muted-foreground)' }}>
+                        Built by Vaishnavi
                     </span>
                 </div>
 
-                <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.82rem', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: '1.5rem', fontSize: '0.8rem' }}>
                     {[
                         { label: 'Resources', href: '/resources' },
                         { label: 'News', href: '/news' },

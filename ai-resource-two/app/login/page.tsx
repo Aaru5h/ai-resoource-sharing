@@ -1,75 +1,126 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Mail } from "lucide-react";
+import { Github, Mail, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import AmbientBackground from "@/components/ui/AmbientBackground";
+import MouseTilt from "@/components/ui/MouseTilt";
+import GradientText from "@/components/ui/GradientText";
+import FloatingElement from "@/components/ui/FloatingElement";
+
+const fadeUp = {
+    initial: { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+};
 
 export default function LoginPage() {
     return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', padding: '2rem' }}>
-            <div className="animate-fade-up" style={{
-                width: '100%', maxWidth: 400,
-                background: 'rgba(10,10,10,0.8)', backdropFilter: 'blur(12px)',
-                border: '1px solid var(--border)', borderRadius: 16,
-                padding: '2.5rem', opacity: 0,
-            }}>
-                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-                    <div style={{
-                        width: 36, height: 36, background: 'var(--primary)', borderRadius: 8,
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        color: '#fff', fontFamily: 'var(--font-geist-mono)', fontSize: '0.6rem',
-                        fontWeight: 900, margin: '0 auto 1rem',
-                    }}>AI</div>
-                    <h1 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '0.25rem' }}>Welcome back</h1>
-                    <p style={{ fontSize: '0.85rem', color: 'var(--muted-foreground)' }}>Sign in to your account</p>
-                </div>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh", padding: "2rem", position: "relative" }}>
+            <AmbientBackground variant="center" />
 
-                <form style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    <div>
-                        <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--muted-foreground)', marginBottom: 6 }}>Email</label>
-                        <input type="email" placeholder="you@example.com" style={{
-                            width: '100%', padding: '0.65rem 0.85rem', background: '#000', border: '1px solid var(--border)',
-                            borderRadius: 8, fontSize: '0.88rem', color: '#fff', outline: 'none',
-                        }} />
-                    </div>
-                    <div>
-                        <label style={{ display: 'block', fontSize: '0.78rem', fontWeight: 600, color: 'var(--muted-foreground)', marginBottom: 6 }}>Password</label>
-                        <input type="password" placeholder="••••••••" style={{
-                            width: '100%', padding: '0.65rem 0.85rem', background: '#000', border: '1px solid var(--border)',
-                            borderRadius: 8, fontSize: '0.88rem', color: '#fff', outline: 'none',
-                        }} />
-                    </div>
-                    <button type="submit" style={{
-                        padding: '0.75rem', background: '#ededed', color: '#000', fontWeight: 600,
-                        fontSize: '0.9rem', borderRadius: 8, border: 'none', cursor: 'pointer',
-                        marginTop: '0.5rem', transition: 'background 0.2s',
-                    }}>Sign In</button>
-                </form>
+            {/* Floating decorations */}
+            <FloatingElement amplitude={10} duration={7} delay={0} style={{ position: "absolute", top: "15%", left: "10%", pointerEvents: "none" }}>
+                <div style={{ width: 60, height: 60, borderRadius: "50%", border: "1px solid rgba(91,141,239,0.1)" }} />
+            </FloatingElement>
+            <FloatingElement amplitude={6} duration={5} delay={1.5} style={{ position: "absolute", bottom: "20%", right: "12%", pointerEvents: "none" }}>
+                <div style={{ width: 8, height: 8, borderRadius: "50%", background: "rgba(91,141,239,0.2)" }} />
+            </FloatingElement>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', margin: '1.5rem 0' }}>
-                    <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
-                    <span style={{ fontSize: '0.72rem', color: 'var(--muted-foreground)' }}>or</span>
-                    <div style={{ flex: 1, height: 1, background: 'var(--border)' }} />
-                </div>
+            <MouseTilt tiltMax={4} scale={1.01} style={{ width: "100%", maxWidth: 400, zIndex: 1 }}>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.97, y: 8 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    className="gradient-border"
+                    style={{
+                        background: "rgba(255,255,255,0.02)",
+                        borderRadius: 16, padding: "2.5rem",
+                        position: "relative", overflow: "hidden",
+                        transformStyle: "preserve-3d",
+                    }}
+                >
+                    <motion.div
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1, duration: 0.4 }}
+                        style={{ textAlign: "center", marginBottom: "2rem", transform: "translateZ(12px)" }}
+                    >
+                        <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                            style={{ width: 48, height: 48, margin: "0 auto 1rem", border: "1px solid rgba(91,141,239,0.2)", borderRadius: "50%", borderTopColor: "var(--primary)", opacity: 0.4 }}
+                        />
+                        <GradientText as="h1" from="#ffffff" via="#93c5fd" to="#5b8def" className="heading-serif" style={{ fontSize: "1.8rem", marginBottom: "0.3rem" }}>
+                            Welcome back
+                        </GradientText>
+                        <p style={{ fontSize: "0.85rem", color: "var(--muted-foreground)" }}>Sign in to your account</p>
+                    </motion.div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-                    <button style={{
-                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                        padding: '0.6rem', background: '#000', border: '1px solid var(--border)',
-                        borderRadius: 8, fontSize: '0.82rem', fontWeight: 600, color: '#ededed',
-                        cursor: 'pointer', transition: 'border-color 0.2s',
-                    }}><Github size={16} /> GitHub</button>
-                    <button style={{
-                        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                        padding: '0.6rem', background: '#000', border: '1px solid var(--border)',
-                        borderRadius: 8, fontSize: '0.82rem', fontWeight: 600, color: '#ededed',
-                        cursor: 'pointer', transition: 'border-color 0.2s',
-                    }}><Mail size={16} /> Google</button>
-                </div>
+                    {/* Form */}
+                    <motion.div {...fadeUp} transition={{ delay: 0.2, duration: 0.4 }} style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}>
+                        <div>
+                            <label style={{ fontSize: "0.78rem", fontWeight: 500, marginBottom: 6, display: "block", color: "var(--muted-foreground)" }}>Email</label>
+                            <input type="email" placeholder="you@example.com" className="input-glow" style={{
+                                width: "100%", padding: "0.7rem 0.85rem", borderRadius: 8,
+                                background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)",
+                                color: "#fff", fontSize: "0.85rem", transition: "border-color 0.3s, box-shadow 0.3s",
+                                outline: "none",
+                            }} />
+                        </div>
+                        <div>
+                            <label style={{ fontSize: "0.78rem", fontWeight: 500, marginBottom: 6, display: "block", color: "var(--muted-foreground)" }}>Password</label>
+                            <input type="password" placeholder="••••••••" className="input-glow" style={{
+                                width: "100%", padding: "0.7rem 0.85rem", borderRadius: 8,
+                                background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)",
+                                color: "#fff", fontSize: "0.85rem", transition: "border-color 0.3s, box-shadow 0.3s",
+                                outline: "none",
+                            }} />
+                        </div>
 
-                <p style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.8rem', color: 'var(--muted-foreground)' }}>
-                    No account? <Link href="/register" style={{ color: '#fff', fontWeight: 600 }}>Create one</Link>
-                </p>
-            </div>
+                        <motion.button
+                            whileHover={{ scale: 1.02, y: -1 }}
+                            whileTap={{ scale: 0.98, y: 1 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                            className="btn-3d"
+                            style={{
+                                width: "100%", padding: "0.75rem",
+                                background: "#ededed", color: "#000", fontWeight: 700,
+                                fontSize: "0.88rem", borderRadius: 10, border: "none", cursor: "pointer",
+                                marginTop: 4,
+                            }}
+                        >Sign In</motion.button>
+                    </motion.div>
+
+                    {/* Divider */}
+                    <motion.div {...fadeUp} transition={{ delay: 0.3, duration: 0.4 }} style={{ display: "flex", alignItems: "center", gap: "0.75rem", margin: "1.2rem 0" }}>
+                        <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
+                        <span style={{ fontSize: "0.72rem", color: "var(--muted-foreground)" }}>or</span>
+                        <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
+                    </motion.div>
+
+                    {/* Social login */}
+                    <motion.div {...fadeUp} transition={{ delay: 0.35, duration: 0.4 }} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.65rem" }}>
+                        {[{ icon: Github, label: "GitHub" }, { icon: Mail, label: "Google" }].map(s => (
+                            <motion.button
+                                key={s.label}
+                                whileHover={{ scale: 1.03, y: -1 }}
+                                whileTap={{ scale: 0.97 }}
+                                className="btn-3d"
+                                style={{
+                                    display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                                    padding: "0.65rem", borderRadius: 8, border: "1px solid var(--border)",
+                                    background: "transparent", color: "var(--foreground)", fontSize: "0.82rem",
+                                    fontWeight: 500, cursor: "pointer",
+                                }}
+                            ><s.icon size={15} /> {s.label}</motion.button>
+                        ))}
+                    </motion.div>
+
+                    <motion.p {...fadeUp} transition={{ delay: 0.4, duration: 0.4 }} style={{ textAlign: "center", marginTop: "1.25rem", fontSize: "0.78rem", color: "var(--muted-foreground)" }}>
+                        No account? <Link href="/register" style={{ color: "#fff", fontWeight: 600 }}>Create one</Link>
+                    </motion.p>
+                </motion.div>
+            </MouseTilt>
         </div>
     );
 }

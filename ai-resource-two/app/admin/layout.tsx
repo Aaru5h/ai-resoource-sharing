@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { LayoutDashboard, Users, FileText, Newspaper, Settings, LogOut, ArrowLeft } from "lucide-react";
+import { LayoutDashboard, Users, FileText, Newspaper, Settings, LogOut, ArrowLeft, MessageSquare } from "lucide-react";
 
 export default function AdminLayout({
     children,
@@ -26,7 +26,7 @@ export default function AdminLayout({
                         <div style={{
                             width: 22, height: 22, background: "#fff", borderRadius: 4,
                             display: "flex", alignItems: "center", justifyContent: "center",
-                            color: "#000", fontFamily: "var(--font-geist-mono)", fontSize: "0.5rem", fontWeight: 900,
+                            color: "#000", fontFamily: "monospace", fontSize: "0.5rem", fontWeight: 900,
                         }}>AD</div>
                         Admin Portal
                     </Link>
@@ -39,6 +39,7 @@ export default function AdminLayout({
                             { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
                             { href: "/admin/resources", icon: FileText, label: "Resources" },
                             { href: "/admin/news/new", icon: Newspaper, label: "Post News" },
+                            { href: "/admin/comments", icon: MessageSquare, label: "Comments" },
                             { href: "/admin/users", icon: Users, label: "Users" },
                             { href: "/admin/settings", icon: Settings, label: "Settings" },
                         ].map(item => (

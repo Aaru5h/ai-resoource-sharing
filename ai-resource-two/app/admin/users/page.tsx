@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, MoreHorizontal, Shield, User as UserIcon } from "lucide-react";
+import { motion } from "framer-motion";
 
 const USERS = [
     { id: 1, name: "Alex Chen", email: "alex@example.com", role: "Admin", joined: "Sep 2024", resources: 12, status: "Active" },
@@ -13,7 +14,12 @@ const USERS = [
 export default function AdminUsersPage() {
     return (
         <div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}>
+            <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "2rem" }}
+            >
                 <div>
                     <h1 style={{ fontSize: "1.75rem", fontWeight: 700, letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>Users</h1>
                     <p style={{ fontSize: "0.88rem", color: "var(--muted-foreground)" }}>Manage accounts and permissions.</p>
@@ -21,12 +27,17 @@ export default function AdminUsersPage() {
                 <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                     <span style={{ fontSize: "0.82rem", color: "var(--muted-foreground)" }}>Total: <strong style={{ color: "#fff" }}>248</strong></span>
                 </div>
-            </div>
+            </motion.div>
 
-            <div style={{
-                borderRadius: 12, border: "1px solid var(--border)", overflow: "hidden",
-                background: "var(--muted)",
-            }}>
+            <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                    borderRadius: 12, border: "1px solid var(--border)", overflow: "hidden",
+                    background: "rgba(255,255,255,0.02)",
+                }}
+            >
                 {/* Search */}
                 <div style={{ padding: "0.75rem 1rem", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", gap: "0.5rem" }}>
                     <Search size={14} style={{ color: "var(--muted-foreground)" }} />
@@ -46,15 +57,20 @@ export default function AdminUsersPage() {
                         </tr>
                     </thead>
                     <tbody>
-                        {USERS.map(u => (
-                            <tr key={u.id} style={{ borderBottom: "1px solid var(--border)", transition: "background 0.15s", cursor: "pointer" }}
-                                onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.02)"}
-                                onMouseLeave={e => e.currentTarget.style.background = "transparent"}
+                        {USERS.map((u, i) => (
+                            <motion.tr
+                                key={u.id}
+                                initial={{ opacity: 0, y: 6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.15 + i * 0.04, duration: 0.3 }}
+                                style={{ borderBottom: "1px solid var(--border)", transition: "background 0.15s", cursor: "pointer" }}
+                                onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.02)"}
+                                onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = "transparent"}
                             >
                                 <td style={{ padding: "0.85rem 1rem" }}>
                                     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
                                         <div style={{
-                                            width: 32, height: 32, borderRadius: "50%", background: "var(--accent)", border: "1px solid var(--border)",
+                                            width: 32, height: 32, borderRadius: "50%", background: "rgba(255,255,255,0.03)", border: "1px solid var(--border)",
                                             display: "flex", alignItems: "center", justifyContent: "center", fontSize: "0.72rem", fontWeight: 700,
                                         }}>{u.name.split(" ").map(n => n[0]).join("")}</div>
                                         <div>
@@ -64,16 +80,19 @@ export default function AdminUsersPage() {
                                     </div>
                                 </td>
                                 <td style={{ padding: "0.85rem 1rem" }}>
-                                    <span style={{
-                                        display: "inline-flex", alignItems: "center", gap: 4,
-                                        fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em",
-                                        padding: "3px 8px", borderRadius: 4,
-                                        background: u.role === "Admin" ? "rgba(0,112,243,0.1)" : u.role === "Pro" ? "rgba(34,197,94,0.1)" : "rgba(255,255,255,0.05)",
-                                        color: u.role === "Admin" ? "var(--primary)" : u.role === "Pro" ? "#22c55e" : "var(--muted-foreground)",
-                                    }}>
+                                    <motion.span
+                                        whileHover={{ scale: 1.05 }}
+                                        style={{
+                                            display: "inline-flex", alignItems: "center", gap: 4,
+                                            fontSize: "0.72rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em",
+                                            padding: "3px 8px", borderRadius: 4,
+                                            background: u.role === "Admin" ? "rgba(91,141,239,0.1)" : u.role === "Pro" ? "rgba(34,197,94,0.1)" : "rgba(255,255,255,0.05)",
+                                            color: u.role === "Admin" ? "var(--primary)" : u.role === "Pro" ? "#22c55e" : "var(--muted-foreground)",
+                                        }}
+                                    >
                                         {u.role === "Admin" && <Shield size={10} />}
                                         {u.role}
-                                    </span>
+                                    </motion.span>
                                 </td>
                                 <td style={{ padding: "0.85rem 1rem", color: "var(--muted-foreground)" }}>{u.joined}</td>
                                 <td style={{ padding: "0.85rem 1rem" }}>{u.resources}</td>
@@ -88,11 +107,11 @@ export default function AdminUsersPage() {
                                         <MoreHorizontal size={16} />
                                     </button>
                                 </td>
-                            </tr>
+                            </motion.tr>
                         ))}
                     </tbody>
                 </table>
-            </div>
+            </motion.div>
         </div>
     );
 }
